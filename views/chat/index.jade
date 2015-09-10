@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  .row
+    .text-center Chat Node
+    br
+    .col-md-8
+      .panel.panel-info
+        .panel-heading Chat History
+        .panel-body
+          ul(class='media-list, table-overflow', id='messages')
+        
+        .panel-footer
+          .input-group
+            input(type='text', class='form-control', placeholder='Enter message', id='message-send', onkeypress='return sendKeyEnter(event)')
+            span(class='input-group-btn')
+              button(class='btn btn-info', id='send') Send
+              
+    .col-md-4
+      .panel.panel-primary
+        .panel-heading Online Users
+        .panel-body
+            ul(class='media-list', id='users-online')
+
+block scripts
+  script(src='http://code.jquery.com/jquery-1.11.1.js', type='text/javascript')
+  script(src='https://cdn.socket.io/socket.io-1.2.0.js', type='text/javascript')
+  script(src='/javascripts/chat.js', type='text/javascript')
