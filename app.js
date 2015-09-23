@@ -33,14 +33,14 @@ app.use(app.sessionConfig);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', function(request, response){
-    response.render('home/index', {title: 'teste'});
-});
+// app.get('/', function(request, response){
+//     response.render('home/index', {title: 'teste'});
+// });
 
-// load('models')
-//   .then('controllers')
-//   .then('routes')
-//   .into(app);
+load('models')
+  .then('controllers')
+  .then('routes')
+  .into(app);
   
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
