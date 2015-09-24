@@ -1,15 +1,12 @@
-module.exports = function(app){
-	
-	var chatController = {
+module.exports = {
 		
-		index : function(request, response){
-			
-			if(!request.session.user)
-				response.redirect('/');
-			
-			response.render('chat/index');
-		}
-	};
+	index : function(request, response){
+		
+		if(!request.session.user)
+			response.redirect('/');
+		
+		response.render('chat/index');
+	}
+};
 	
-	return chatController;
-}
+	

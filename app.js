@@ -8,6 +8,7 @@ var load = require('express-load');
 var session = require('express-session');
 var passport = require('./lib/passport');
 
+
 var app = express();
 app.passport = passport;
 
@@ -33,14 +34,7 @@ app.use(app.sessionConfig);
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.get('/', function(request, response){
-//     response.render('home/index', {title: 'teste'});
-// });
-
-load('models')
-  .then('controllers')
-  .then('routes')
-  .into(app);
+require('./lib/di')(app);
   
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -53,25 +47,25 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-//if (app.get('env') === 'development') {
-  // app.use(function(err, req, res, next) {
-  //   res.status(err.status || 500);
-  //   res.render('error', {
-  //     message: err.message,
-  //     error: err
-  //   });
-  // });
-//}
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
 
 // production error handler
 // no stacktraces leaked to user
-// app.use(function(err, req, res, next) {
-//   res.status(err.status || 500);
-//   res.render('error', {
-//     message: err.message,
-//     error: {}
-//   });
-// });
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
 
 
 module.exports = app;

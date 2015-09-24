@@ -1,24 +1,19 @@
-module.exports = function(app){
+module.exports = {
 	
-	var homeController = {
+	index: function(request, response){
+		response.render('home/index', {title: 'teste'});
+	},
+	
+	logon: function(request, response){
 		
-		index: function(request, response){
-			response.render('home/index', {title: 'teste'});
-		},
-		
-		logon: function(request, response){
+		if(!request.user)
+			response.redirect('/');
 			
-			if(!request.user)
-				response.redirect('/');
-				
-			request.session.user = {
-				name: request.user.displayName,
-				picture: request.user.photos[0].value
-			};
-			 
-			response.redirect('/chat');
-		}	
-	};
-	
-	return homeController;
-}
+		request.session.user = {
+			name: request.user.displayName,
+			picture: request.user.photos[0].value
+		};
+			
+		response.redirect('/chat');
+	}	
+};

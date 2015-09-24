@@ -1,5 +1,4 @@
-module.exports = function(app){
+module.exports = function(app, controller){
 	
-	var controller = app.controllers.chat;
 	app.get('/chat', controller.index);
 }

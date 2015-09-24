@@ -1,7 +1,5 @@
-var passport = require('../lib/passport');
-
-module.exports = function(app){
+module.exports = function(app, passport){
 	
-	app.get('/auth/facebook', app.passport.authenticate('facebook'));
-	app.get('/auth/facebook/callback', app.passport.authenticate('facebook', { successReturnToOrRedirect: '/logon', failureRedirect: '/' }));
+	app.get('/auth/facebook', passport.authenticate('facebook'));
+	app.get('/auth/facebook/callback', passport.authenticate('facebook', { successReturnToOrRedirect: '/logon', failureRedirect: '/' }));
 }

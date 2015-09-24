@@ -1,7 +1,6 @@
 
-module.exports = function(app){
+module.exports = function(app, controller){
   
-  var controller = app.controllers.home;
   app.get('/', controller.index);
   app.get('/logon', controller.logon);
 }
